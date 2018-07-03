@@ -6,18 +6,14 @@ const routes = require('./router/routes');
 
 //DB CONNECTION
 mongoose.Promise = global.Promise;
-// if (process.env.NODE_ENV !== 'test') {
 mongoose.connect('mongodb://localhost/users_practice');
 mongoose.connection 
-    .once('open',() => {
-        console.log('db open');
-    })
+    .once('open',() => { console.log('db open'); })
     .on('error', () => (error) => console.warn('Warning', error))
-// }
 
 app.use(bodyParser.json());
 
-routes(app);
+routes(app); 
 
 app.use((err, req, res, next) => {
      // err: error object -> will be defined if prev middleware throws an error

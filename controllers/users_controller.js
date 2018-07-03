@@ -34,8 +34,4 @@ module.exports = {
             .then(user => res.send(user))
             .catch(next);
     }
-    //editByName(req, res)
-
-
-
 }
