@@ -10,7 +10,7 @@
 - index.js
 - package.json 
 
-### index.js
+## index.js
 - runs application on a server 
     ```javascript
     const app = require('./app');
@@ -20,7 +20,7 @@
     })
     ```
 
-### app.js
+## app.js
 - this is the file where our express application is configured
 - set up the express application 
     ```javascript
