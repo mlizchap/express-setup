@@ -2,6 +2,9 @@
 - **Node**: a runtime environment that allows Javascript to be run outside of the browser
 - **Express**: a framework for Node for handling HTTP requests 
 
+## Examples 
+[Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
+
 ## Folder Structure
 - controllers
 - models
