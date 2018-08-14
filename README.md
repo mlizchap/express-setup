@@ -5,6 +5,14 @@
 ## Examples 
 [Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
 
+## TOC
+- [Folder Structure](#folder-structure)
+- [Server Setup](#server-setup)
+- [Application Setup](#the-application-setup)
+- [Routes](#routes)
+- [Controllers](#controllers)
+- [Models](#models)
+
 ## Folder Structure
 - controllers
 - models
@@ -13,7 +21,7 @@
 - index.js
 - package.json 
 
-## index.js
+## Server Setup
 - runs application on a server 
     ```javascript
     const app = require('./app');
@@ -23,7 +31,7 @@
     })
     ```
 
-## app.js
+## The Application Setup
 - this is the file where our express application is configured
 - set up the express application 
     ```javascript
