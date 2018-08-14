@@ -66,65 +66,65 @@
     })
     ```
 - export the app 
-```javascript
-module.exports = app;
-```
+    ```javascript
+    module.exports = app;
+    ```
 
 ## Routes
 - the routes file will export functions that run when certain endpoints are hit 
-```javascript
-const UsersController = require('../controllers/users_controller');
+    ```javascript
+    const UsersController = require('../controllers/users_controller');
 
-module.exports = (app) => {
-    app.get('/api', UsersController.greeting);
-    app.get('/api/users', UsersController.index);
-    app.post('/api/users', UsersController.create);
-    app.put('/api/users/:id', UsersController.edit);
-    app.delete('/api/users/:id', UsersController.delete);
-}
-```
+    module.exports = (app) => {
+        app.get('/api', UsersController.greeting);
+        app.get('/api/users', UsersController.index);
+        app.post('/api/users', UsersController.create);
+        app.put('/api/users/:id', UsersController.edit);
+        app.delete('/api/users/:id', UsersController.delete);
+    }
+    ```
 
 ## Controllers 
 - the controller file exports an object that contains methods for handling routes 
-```javascript
-const User = require('../models/user');
+    ```javascript
+    const User = require('../models/user');
 
-module.exports = {
-    greeting(req, res) {
-        res.send({ hi: 'there!!' });
-    },
+    module.exports = {
+        greeting(req, res) {
+            res.send({ hi: 'there!!' });
+        },
 
-    index(req, res) {
-        User.find({})
-            .then(users => res.send(users))
-    },
+        index(req, res) {
+            User.find({})
+                .then(users => res.send(users))
+        },
 
-    create(req, res) {
-        const userProps = req.body;
-        
-        User.create(userProps)
-            .then(driver => res.send(driver))
-    },
+        create(req, res) {
+            const userProps = req.body;
 
-    edit(req, res, next) {
-        const userId = req.params.id;
-        const userProps = req.body;
+            User.create(userProps)
+                .then(driver => res.send(driver))
+        },
 
-        User.findOneAndUpdate({ _id: userId }, userProps)
-            .then(() => User.findById({ _id: userId }))
-            .then(user => res.send(user))
-            .catch(next)
-    },
-    
-    delete(req, res, next) {
-        const userId = req.params.id;
+        edit(req, res, next) {
+            const userId = req.params.id;
+            const userProps = req.body;
 
-        User.findByIdAndRemove({ _id: userId }) 
-            .then(user => res.send(user))
-            .catch(next);
+            User.findOneAndUpdate({ _id: userId }, userProps)
+                .then(() => User.findById({ _id: userId }))
+                .then(user => res.send(user))
+                .catch(next)
+        },
+
+        delete(req, res, next) {
+            const userId = req.params.id;
+
+            User.findByIdAndRemove({ _id: userId }) 
+                .then(user => res.send(user))
+                .catch(next);
+        }
     }
-}
-```
+    ```
 
 ### Models 
 - the model determines how data can be stored organized and manipulated 
