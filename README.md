@@ -24,6 +24,7 @@
 ## Server Setup
 - runs application on a server 
     ```javascript
+    /* in index.js */
     const app = require('./app');
 
     app.listen(3050, () => {
@@ -35,6 +36,7 @@
 - this is the file where our express application is configured
 - set up the express application 
     ```javascript
+    /* in app.js */
     const app = express();
     ```
     - `app` is an object that is able to take requests from the server and run code 
