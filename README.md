@@ -186,8 +186,8 @@ app.get('/api', controller.index);
      ```
  
  ## Error Handling Middleware 
-  - currently, if an id for the delete and edit functions are not found it gets stuck.  Error handling lets the user know there was an error instead of pausing the application
- - setup middleware, middleware will have access to the request and response object, the `next` function, and the error object 
+  - Currently, if an id for the delete and edit functions are not found it gets stuck.  Error handling lets the user know there was an error instead of pausing the application
+ - Middleware will have access to the request and response object, the `next` function, and the error object 
     - **error object**: will be defined if the previous middleware throws an error
     - **next**: a function that when run, goes to the next middleware
     ```java
