@@ -22,11 +22,10 @@
 - index.js
 - package.json 
 
-## Express-Setup
+## Install Express and Other Modules 
 - create an express application
     ```javascript
-    $ npm install express --save
-    $ npm install mongoose --save
+    $ npm install express mongoose body-parser mongo --save
     ```
 
 ## The Application Setup
