@@ -8,8 +8,8 @@
 ## TOC
 - [Folder Structure](#folder-structure)
 - [Express Setup](#express-setup)
-- [Server Setup](#server-setup)
 - [Application Setup](#the-application-setup)
+- [Server Setup](#server-setup)
 - [Routes](#routes)
 - [Controllers](#controllers)
 - [Models](#models)
@@ -26,17 +26,6 @@
 - create an express application
     ```javascript
     $ npm install express --save
-    ```
-
-## Server Setup
-- runs application on a server 
-    ```javascript
-    /* in index.js */
-    const app = require('./app');
-
-    app.listen(3050, () => {
-        console.log('Running on port 3050');
-    })
     ```
 
 ## The Application Setup
@@ -75,6 +64,17 @@
 - export the app 
     ```javascript
     module.exports = app;
+    ```
+    
+## Server Setup
+- runs application on a server 
+    ```javascript
+    /* in index.js */
+    const app = require('./app');
+
+    app.listen(3050, () => {
+        console.log('Running on port 3050');
+    })
     ```
 
 ## Routes
