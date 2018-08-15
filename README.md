@@ -6,7 +6,16 @@
 [Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
 
 ## TOC
+- [Folder Structure](#folder-structure)
 - [Setup](#setup)
+    - [Install Modules](#install-express-and-other-modules)
+    - [Application Setup](#the-application-setup)
+    - [Server Setup](#server-setup)
+    - [Controller Setup](#set-up-the-controller)
+    - [Route Setup](#route-set)
+    - [Linking the App and Routes](#linking-the-routes-to-the-app)
+    - [Database Setup](#set-up-the-db)
+    - [Creating the Model](#models)
 - [CRUD functionality](#crud-functionality-of-data)
 
 ## Folder Structure 
