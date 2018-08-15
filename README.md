@@ -26,14 +26,14 @@
 - **models** - where the schema for the data is created and exported
 - **package.json** - contains the packages and scripts, among other things, for the application.
 
-### Setup 
-## Install Express and Other Modules 
+## Setup 
+### Install Express and Other Modules 
 - create an express application
     ```javascript
     $ npm install express mongoose body-parser mongo --save
     ```
 
-## The Application Setup
+### The Application Setup
 - this is the file where our express application is configured
 - set up the express application 
     ```javascript
@@ -45,7 +45,7 @@
     - `app` is an object that is able to take requests from the server and run code 
     
     
-## Server Setup
+### Server Setup
 - runs application on a server 
     ```javascript
     /* in index.js */
@@ -56,7 +56,7 @@
     })
     ```
     
-## Set up the controller
+### Set up the controller
 - the functions that will run when a certain route is reached
     ```javascript
     module.exports = {
@@ -65,7 +65,7 @@
         },
     ```
 
-## Route setup
+### Route setup
 - the routes file will export functions that run when certain endpoints are hit 
 - follows this pattern: `app.<method>(<route>, controller funtion)`
     ```javascript
@@ -76,14 +76,14 @@
     }
     ```    
 
-## Linking the Routes to the App
+### Linking the Routes to the App
 - wire up the routes to the app
     - the `routes` file will exports a functions that run when certain endpoints are hit 
     ```javascript
     routes(app);
     ```
 
-## Set up the DB     
+### Set up the DB     
 - set up the database connection
     ```javascript
     const mongoose = require('mongoose');
