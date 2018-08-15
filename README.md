@@ -33,11 +33,15 @@
 - set up the express application 
     ```javascript
     /* in app.js */
+    const express = require('express');    
+    
     const app = express();
     ```
     - `app` is an object that is able to take requests from the server and run code 
 - set up the database connection
     ```javascript
+    const mongoose = require('mongoose');
+    
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost/users_practice');
     mongoose.connection 
