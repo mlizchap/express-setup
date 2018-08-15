@@ -15,12 +15,14 @@
 - [Models](#models)
 
 ## Folder Structure ****MAKE DESCRIPTIONS FOR EACH**** 
-- controllers: 
-- models
-- router 
-- app.js
-- index.js
-- package.json 
+- **index.js** - point of entry for the app, where the app is imported and the server is started.
+- **app.js** - the express app is created and started here, the db cofig and middleware are also setup here.
+- **controllers** - an object with various methods to handle endpointes are here.
+- **route** - functions for dealing with enpoints are here, the controllers are used within the request methods.
+- **models** - where the schema for the data is created and exported
+
+
+- **package.json**
 
 ### Setup 
 ## Install Express and Other Modules 
@@ -63,6 +65,7 @@
 
 ## Route setup
 - the routes file will export functions that run when certain endpoints are hit 
+- follows this pattern: `app.<method>(<route>, controller funtion)`
     ```javascript
     const UsersController = require('../controllers/users_controller');
 
