@@ -1,4 +1,4 @@
-# mongo-express-basic
+# Express with Mongo Basics
 - **Node**: a runtime environment that allows Javascript to be run outside of the browser
 - **Express**: a framework for Node for handling HTTP requests 
 
@@ -17,6 +17,10 @@
     - [Database Setup](#set-up-the-db)
     - [Creating the Model](#models)
 - [CRUD functionality](#crud-functionality-of-data)
+    - [CREATE](#creating-data)
+    - [READ](#getting-data)
+    - [UPDATE](#editing-data) 
+    - [DESTROY](#deleting-data)
 
 ## Folder Structure 
 - **index.js** - point of entry for the app, where the app is imported and the server is started.
