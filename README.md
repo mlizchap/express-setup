@@ -7,6 +7,7 @@
 
 ## TOC
 - [Folder Structure](#folder-structure)
+- [Express Setup](#express-setup)
 - [Server Setup](#server-setup)
 - [Application Setup](#the-application-setup)
 - [Routes](#routes)
@@ -20,6 +21,12 @@
 - app.js
 - index.js
 - package.json 
+
+## Express-Setup
+- create an express application
+    ```javascript
+    $ npm install express --save
+    ```
 
 ## Server Setup
 - runs application on a server 
