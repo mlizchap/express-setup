@@ -38,6 +38,22 @@
     const app = express();
     ```
     - `app` is an object that is able to take requests from the server and run code 
+    
+    
+## Server Setup
+- runs application on a server 
+    ```javascript
+    /* in index.js */
+    const app = require('./app');
+
+    app.listen(3050, () => {
+        console.log('Running on port 3050');
+    })
+    ```
+    
+    
+    
+    
 - set up the database connection
     ```javascript
     const mongoose = require('mongoose');
@@ -70,16 +86,7 @@
     module.exports = app;
     ```
     
-## Server Setup
-- runs application on a server 
-    ```javascript
-    /* in index.js */
-    const app = require('./app');
 
-    app.listen(3050, () => {
-        console.log('Running on port 3050');
-    })
-    ```
 
 ## Routes
 - the routes file will export functions that run when certain endpoints are hit 
