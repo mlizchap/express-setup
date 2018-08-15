@@ -21,6 +21,7 @@
     - [READ](#getting-data)
     - [UPDATE](#editing-data) 
     - [DESTROY](#deleting-data)
+- [Error Handling Middleware](#error-handling-middleware)
 
 ## Folder Structure 
 - **index.js** - point of entry for the app, where the app is imported and the server is started.
