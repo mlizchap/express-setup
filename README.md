@@ -26,6 +26,7 @@
 - create an express application
     ```javascript
     $ npm install express --save
+    $ npm install mongoose --save
     ```
 
 ## The Application Setup
