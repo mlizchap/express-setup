@@ -14,14 +14,15 @@
 - [Controllers](#controllers)
 - [Models](#models)
 
-## Folder Structure
-- controllers
+## Folder Structure ****MAKE DESCRIPTIONS FOR EACH**** 
+- controllers: 
 - models
 - router 
 - app.js
 - index.js
 - package.json 
 
+### Setup 
 ## Install Express and Other Modules 
 - create an express application
     ```javascript
@@ -51,9 +52,33 @@
     })
     ```
     
-    
-    
-    
+## Set up the controller
+- the functions that will run when a certain route is reached
+    ```javascript
+    module.exports = {
+        greeting(req, res) {
+            res.send({ hi: 'there!!' });
+        },
+    ```
+
+## Route setup
+- the routes file will export functions that run when certain endpoints are hit 
+    ```javascript
+    const UsersController = require('../controllers/users_controller');
+
+    module.exports = (app) => {
+        app.get('/api', test.greeting);
+    }
+    ```    
+
+## Linking the Routes to the App
+- wire up the routes to the app
+    - the `routes` file will exports a functions that run when certain endpoints are hit 
+    ```javascript
+    routes(app);
+    ```
+
+## Set up the DB     
 - set up the database connection
     ```javascript
     const mongoose = require('mongoose');
@@ -64,90 +89,12 @@
         .once('open',() => { console.log('db open'); })
         .on('error', () => (error) => console.warn('Warning', error))
     ```
-- body-parser allows us to parse the body of http requests 
-    ```javascript
-    app.use(bodyParser.json());
-    ```
-- wire up the routes to the app
-    - the `routes` file will exports a functions that run when certain endpoints are hit 
-    ```javascript
-    routes(app);
-    ```
-- setup middleware, middleware will have access to the request and response object, the `next` function, and the error object 
-    - **error object**: will be defined if the previous middleware throws an error
-    - **next**: a function that when run, goes to the next middleware
-    ```java
-    app.use((err, req, res, next) => {
-        res.status(422).send({ error: err.message});
-    })
-    ```
-- export the app 
-    ```javascript
-    module.exports = app;
-    ```
     
-
-
-## Routes
-- the routes file will export functions that run when certain endpoints are hit 
-    ```javascript
-    const UsersController = require('../controllers/users_controller');
-
-    module.exports = (app) => {
-        app.get('/api', UsersController.greeting);
-        app.get('/api/users', UsersController.index);
-        app.post('/api/users', UsersController.create);
-        app.put('/api/users/:id', UsersController.edit);
-        app.delete('/api/users/:id', UsersController.delete);
-    }
-    ```
-
-## Controllers 
-- the controller file exports an object that contains methods for handling routes 
-    ```javascript
-    const User = require('../models/user');
-
-    module.exports = {
-        greeting(req, res) {
-            res.send({ hi: 'there!!' });
-        },
-
-        index(req, res) {
-            User.find({})
-                .then(users => res.send(users))
-        },
-
-        create(req, res) {
-            const userProps = req.body;
-
-            User.create(userProps)
-                .then(driver => res.send(driver))
-        },
-
-        edit(req, res, next) {
-            const userId = req.params.id;
-            const userProps = req.body;
-
-            User.findOneAndUpdate({ _id: userId }, userProps)
-                .then(() => User.findById({ _id: userId }))
-                .then(user => res.send(user))
-                .catch(next)
-        },
-
-        delete(req, res, next) {
-            const userId = req.params.id;
-
-            User.findByIdAndRemove({ _id: userId }) 
-                .then(user => res.send(user))
-                .catch(next);
-        }
-    }
-    ```
-
 ### Models 
 - the model determines how data can be stored organized and manipulated 
 - the `schema` describes the orgnazination of the data
     ```java
+    /* in models/<modelName> folder */ 
     const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
 
@@ -160,3 +107,114 @@
 
     module.exports = User;
     ```
+
+## CRUD Functionality of Data
+### Creating Data
+- in the *app file:, use bodyParser to parse the body of requests
+    ```javascript
+    const bodyParser = require('body-parser')
+
+    app.use(bodyParser.json());
+    ```
+- in the controller file: import the model and create the function 
+    ```javascript
+    create(req, res) {
+        const recipeProps = req.body;
+
+        Recipe.create(recipeProps)
+            .then(recipe => res.send(recipe))
+    },
+    ```
+
+- in the routes file: wire up the controller with the `post()` method
+   ```javascript
+   app.post('/api/new', controller.create)
+   ```
+- *to test*: use post man, create a body and use the post request method.  
+    
+### Getting Data
+- create a controller called index that uses the `find()` method (`.find({})` finds all the data)
+    ```javsacript
+    index(req, res) {
+        User.find({})
+            .then(users => res.send(users))    
+    }
+    ```
+- wire up the controller in the router file with the `get()` method
+```javascript
+app.get('/api', controller.index);
+```
+
+### Deleting Data
+- create the delete controller with the `delete()` method
+    ```javascript
+    delete(req, res) {
+        const id = req.params.id;
+
+        Recipe.findByIdAndRemove({ _id: id })
+            .then(recipe => res.send(recipe))
+    }
+    ```
+ - wire up the controller in the router file
+ 
+ ### Editing Data 
+ - create the controller with the `put()` method
+    ```javascript
+        edit(req, res) {
+        const id = req.params.id;
+        const recipeProps = req.body;
+
+        Recipe.findOneAndUpdate({ _id: id }, recipeProps)
+            .then(() => Recipe.findById({ _id: id}))
+            .then(recipe => res.send(recipe))
+    }
+    ```
+ 
+ - wire up the controller in the router file
+     ```javascript
+     app.put('/api/:id', controller.edit)
+     ```
+ 
+ ## Error Handling Middleware 
+  - currently, if an id for the delete and edit functions are not found it gets stuck.  Error handling lets the user know there was an error instead of pausing the application
+ - setup middleware, middleware will have access to the request and response object, the `next` function, and the error object 
+    - **error object**: will be defined if the previous middleware throws an error
+    - **next**: a function that when run, goes to the next middleware
+    ```java
+    /****/
+    routes(app);
+    
+    app.use((err, req, res, next) => {
+        res.status(422).send({ error: err.message});
+    })
+    ```
+ - use the `next()` function in the controllers, if theres an error the `catch` block will run with `next`, allowing the code to go to the middleware (`app.use`)
+     ```javascript
+     edit(req, res, next) {
+        const userId = req.params.id;
+        const userProps = req.body;
+
+        User.findOneAndUpdate({ _id: userId }, userProps)
+            .then(() => User.findById({ _id: userId }))
+            .then(user => res.send(user))
+            .catch(next)
+    },
+    
+    delete(req, res, next) {
+        const userId = req.params.id;
+
+        User.findByIdAndRemove({ _id: userId }) 
+            .then(user => res.send(user))
+            .catch(next);
+    }
+     ```
+
+ - now if you run the edit/delete methods in postman with incorrect ids, instead of pasing the application like it did previously, the middleware will run (`app.use`) and respond with an error message.
+    
+    
+    
+    
+
+
+
+
