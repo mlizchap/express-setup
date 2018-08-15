@@ -6,23 +6,16 @@
 [Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
 
 ## TOC
-- [Folder Structure](#folder-structure)
-- [Express Setup](#express-setup)
-- [Application Setup](#the-application-setup)
-- [Server Setup](#server-setup)
-- [Routes](#routes)
-- [Controllers](#controllers)
-- [Models](#models)
+- [Setup](#setup)
+- [CRUD functionality](#crud-functionality-of-data)
 
-## Folder Structure ****MAKE DESCRIPTIONS FOR EACH**** 
+## Folder Structure 
 - **index.js** - point of entry for the app, where the app is imported and the server is started.
 - **app.js** - the express app is created and started here, the db cofig and middleware are also setup here.
 - **controllers** - an object with various methods to handle endpointes are here.
 - **route** - functions for dealing with enpoints are here, the controllers are used within the request methods.
 - **models** - where the schema for the data is created and exported
-
-
-- **package.json**
+- **package.json** - contains the packages and scripts, among other things, for the application.
 
 ### Setup 
 ## Install Express and Other Modules 
