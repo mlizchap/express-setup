@@ -12,7 +12,7 @@
     - [Application Setup](#the-application-setup)
     - [Server Setup](#server-setup)
     - [Controller Setup](#set-up-the-controller)
-    - [Route Setup](#route-set)
+    - [Route Setup](#route-setup)
     - [Linking the App and Routes](#linking-the-routes-to-the-app)
     - [Database Setup](#set-up-the-db)
     - [Creating the Model](#models)
