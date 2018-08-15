@@ -3,7 +3,8 @@
 - **Express**: a framework for Node for handling HTTP requests 
 
 ## Examples 
-[Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
+- [Mongo Express User App](https://github.com/mlizchap/mongo-express-user-app)
+- [Recipe App Backend](https://github.com/mlizchap/recipe-app-backend)
 
 ## TOC
 - [Folder Structure](#folder-structure)
