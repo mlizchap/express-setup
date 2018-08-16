@@ -227,11 +227,12 @@ app.get('/api', controller.index);
     
     
 ### CORS
-```javascript
-const cors = require('cors')
+- allows for cross origin resource sharing
+    ```javascript
+    const cors = require('cors')
 
-app.use(cors())
-```
+    app.use(cors())
+    ```
 
 
 
