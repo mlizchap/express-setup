@@ -77,10 +77,10 @@
 - the routes file will export functions that run when certain endpoints are hit 
 - follows this pattern: `app.<method>(<route>, controller funtion)`
     ```javascript
-    const UsersController = require('../controllers/users_controller');
+    const controller = require('../controllers/users_controller');
 
     module.exports = (app) => {
-        app.get('/api', test.greeting);
+        app.get('/api', controller.greeting);
     }
     ```    
 
