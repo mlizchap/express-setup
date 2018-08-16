@@ -1,4 +1,4 @@
-# Express with Mongo Basics
+# Mongo with Express Basics
 - **Node**: a runtime environment that allows Javascript to be run outside of the browser
 - **Express**: a framework for Node for handling HTTP requests 
 
