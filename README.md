@@ -22,7 +22,9 @@
     - [READ](#getting-data)
     - [UPDATE](#editing-data) 
     - [DESTROY](#deleting-data)
-- [Error Handling Middleware](#error-handling-middleware)
+- [Middleware](#middleware)
+    - [Error Handling](#error-handling-middleware)
+    - [CORS](#cors)
 
 ## Folder Structure 
 - **index.js** - point of entry for the app, where the app is imported and the server is started.
@@ -185,8 +187,8 @@ app.get('/api', controller.index);
      ```javascript
      app.put('/api/:id', controller.edit)
      ```
- 
- ## Error Handling Middleware 
+ ## Middleware
+ ### Error Handling Middleware 
   - Currently, if an id for the delete and edit functions are not found it gets stuck.  Error handling lets the user know there was an error instead of pausing the application
  - Middleware will have access to the request and response object, the `next` function, and the error object 
     - **error object**: will be defined if the previous middleware throws an error
@@ -224,7 +226,12 @@ app.get('/api', controller.index);
     
     
     
-    
+### CORS
+```javascript
+const cors = require('cors')
+
+app.use(cors())
+```
 
 
 
