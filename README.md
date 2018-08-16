@@ -216,7 +216,7 @@ app.get('/api', controller.index);
 
         User.findByIdAndRemove({ _id: userId }) 
             .then(user => res.send(user))
-            <span style="color:yellow">catch(next)</span>
+            catch(next);
     }
      ```
 
