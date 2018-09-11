@@ -92,7 +92,6 @@
 
 ### Linking the Routes to the App
 - wire up the routes to the app, the functions in router will use the application as the arg
-- the `router.js` file 
 - in `router.js`
     ```javascript
     const router = require('./router');
