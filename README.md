@@ -138,14 +138,18 @@
 
 ## CRUD Functionality of Data
 ### Creating Data
-- in the *app file:, use bodyParser to parse the body of requests
+- install and use bodyParser to parse the body of requests
+- in `app.js`
     ```javascript
     const bodyParser = require('body-parser')
 
     app.use(bodyParser.json());
     ```
 - in the controller file: import the model and create the function 
+- in `controllers/<controllerName>/js`
     ```javascript
+    const Recipe = require('../models/Recipe');
+    
     create(req, res) {
         const recipeProps = req.body;
 
@@ -153,14 +157,22 @@
             .then(recipe => res.send(recipe))
     },
     ```
-- in the routes file: wire up the controller with the `post()` method
+- wire up the controller with the `post()` method
+- in `router.js`
    ```javascript
    app.post('/api/new', controller.create)
    ```
-- *to test*: use post man, create a body and use the post request method.  
+*to test out 
+- use post man, create a body and use the post request method
+- in terminal:
+> show dbs
+> use <db name>
+> show collections
+> db.<collectionName>.find(); (the data you have just created should be here)
     
 ### Getting Data
 - create a controller called index that uses the `find()` method (`.find({})` finds all the data)
+- in `controllers/<controllerName>/js`
     ```javsacript
     index(req, res) {
         User.find({})
@@ -168,12 +180,15 @@
     }
     ```
 - wire up the controller in the router file with the `get()` method
-```javascript
-app.get('/api', controller.index);
-```
+- in `router.js`
+    ```javascript
+    app.get('/api', controller.index);
+    ```
+*should be able to go to /api and see the data*
 
 ### Deleting Data
 - create the delete controller with the `delete()` method
+- in `controllers/<controllerName>/js`
     ```javascript
     delete(req, res) {
         const id = req.params.id;
@@ -183,24 +198,36 @@ app.get('/api', controller.index);
     }
     ```
  - wire up the controller in the router file
+ - in `router.js`
+     ```javascript
+     app.delete('/api/users/:id', UsersController.delete);
+     ```
+     
+ *you should be able to go to api/users/<id#> and then when you do the get request it is no longer there*
  
  ### Editing Data 
  - create the controller with the `put()` method
+ - in `controllers/<controllerName.js`
     ```javascript
-        edit(req, res) {
+    edit(req, res) {
         const id = req.params.id;
         const recipeProps = req.body;
 
-        Recipe.findOneAndUpdate({ _id: id }, recipeProps)
-            .then(() => Recipe.findById({ _id: id}))
-            .then(recipe => res.send(recipe))
+    Recipe.findOneAndUpdate({ _id: id }, recipeProps)
+        .then(() => Recipe.findById({ _id: id}))
+        .then(recipe => res.send(recipe))
     }
     ```
- 
  - wire up the controller in the router file
+ - in `router.js`
      ```javascript
      app.put('/api/:id', controller.edit)
      ```
+ *to try out:
+ - as a put request in postman - go to api/<id#>
+ - change the body to what you want to change
+ - when you send and do a get index request the updated data should show 
+ 
  ## Middleware
  ### Error Handling Middleware 
   - Currently, if an id for the delete and edit functions are not found it gets stuck.  Error handling lets the user know there was an error instead of pausing the application
@@ -236,8 +263,7 @@ app.get('/api', controller.index);
     }
      ```
 
- - now if you run the edit/delete methods in postman with incorrect ids, instead of pasing the application like it did previously, the middleware will run (`app.use`) and respond with an error message.
-    
+ *now if you go in postman and try to delete or edit an id that doesn't exist, an error message will be the response*
     
     
 ### CORS
