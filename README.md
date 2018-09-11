@@ -30,7 +30,7 @@
 - **index.js** - point of entry for the app, where the app is imported and the server is started.
 - **app.js** - the express app is created and started here, the db cofig and middleware are also setup here.
 - **controllers** - an object with various methods to handle endpointes are here.
-- **route** - functions for dealing with enpoints are here, the controllers are used within the request methods.
+- **router.js** - functions for dealing with enpoints are here, the controllers are used within the request methods.
 - **models** - where the schema for the data is created and exported
 - **package.json** - contains the packages and scripts, among other things, for the application.
 
@@ -44,19 +44,21 @@
 ### The Application Setup
 - this is the file where our express application is configured
 - set up the express application 
+- in `app.js`
     ```javascript
-    /* in app.js */
     const express = require('express');    
     
     const app = express();
+    
+    module.exports = app;
     ```
     - `app` is an object that is able to take requests from the server and run code 
     
     
 ### Server Setup
 - runs application on a server 
+- in `index.js`
     ```javascript
-    /* in index.js */
     const app = require('./app');
 
     app.listen(3050, () => {
@@ -64,8 +66,11 @@
     })
     ```
     
+ *at this point when you run node index.js the server should run and you should see the log in the console*
+    
 ### Set up the controller
 - the functions that will run when a certain route is reached
+- in `controllers/<controllerName>.js`
     ```javascript
     module.exports = {
         greeting(req, res) {
@@ -74,8 +79,9 @@
     ```
 
 ### Route setup
-- the routes file will export functions that run when certain endpoints are hit 
+- exports functions that takes an arg of app and runs certain controller functions on the app depending on the endpoint hit
 - follows this pattern: `app.<method>(<route>, controller funtion)`
+- in `router.js`
     ```javascript
     const controller = require('../controllers/users_controller');
 
@@ -85,14 +91,20 @@
     ```    
 
 ### Linking the Routes to the App
-- wire up the routes to the app
-    - the `routes` file will exports a functions that run when certain endpoints are hit 
+- wire up the routes to the app, the functions in router will use the application as the arg
+- the `router.js` file 
+- in `router.js`
     ```javascript
+    const router = require('./router');
+
     routes(app);
     ```
+    
+*at this point you should be able to go to the api endpoint and seee the greeting returned from the greeting controller* 
 
 ### Set up the DB     
 - set up the database connection
+- in `app.js`
     ```javascript
     const mongoose = require('mongoose');
     
@@ -102,12 +114,15 @@
         .once('open',() => { console.log('db open'); })
         .on('error', () => (error) => console.warn('Warning', error))
     ```
+*to make sure db was created via terminal: 
+    $ mongo somewhere.mongolayer.com:10011/my_database -u username -p password 
+    > show collections (your db should appear) 
     
 ### Models 
 - the model determines how data can be stored organized and manipulated 
 - the `schema` describes the orgnazination of the data
+- in models/<ModelName>.js 
     ```java
-    /* in models/<modelName> folder */ 
     const mongoose = require('mongoose');
     const Schema = mongoose.Schema;
 
@@ -138,7 +153,6 @@
             .then(recipe => res.send(recipe))
     },
     ```
-
 - in the routes file: wire up the controller with the `post()` method
    ```javascript
    app.post('/api/new', controller.create)
